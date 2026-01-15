@@ -1,0 +1,13 @@
+# Logs
+logs/
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# Artifacts (optional – usually not pushed)
+artifacts/
