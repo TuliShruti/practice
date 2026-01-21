@@ -113,6 +113,7 @@ class ModelTrainer:
 
             return {
                 "model_name": best_model_name,
+                "model_file_path": self.model_trainer_config.trained_model_file_path,
                 "train_accuracy": train_accuracy,
                 "test_accuracy": test_accuracy,
                 "train_f1": train_f1,

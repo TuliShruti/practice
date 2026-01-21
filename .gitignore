@@ -1,13 +1,7 @@
-# Logs
+artifacts/
 logs/
-*.log
-
-# Python cache
-__pycache__/
 *.pyc
-
-# Virtual environment
-venv/
-
-# Artifacts tracked by DVC (optional – usually not pushed)
-# artifacts/
+__pycache__/
+.dvc/
+*.pkl
+*.dvc
