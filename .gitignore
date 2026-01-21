@@ -9,5 +9,5 @@ __pycache__/
 # Virtual environment
 venv/
 
-# Artifacts (optional – usually not pushed)
-artifacts/
+# Artifacts tracked by DVC (optional – usually not pushed)
+# artifacts/
