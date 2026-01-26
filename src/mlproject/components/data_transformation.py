@@ -12,7 +12,7 @@ from sklearn.impute import SimpleImputer
 from src.mlproject.exception import CustomException
 from src.mlproject.logger import logging
 
-import pickle
+import dill
 
 
 @dataclass
@@ -59,7 +59,7 @@ class DataTransformation:
             cat_pipeline = Pipeline(
                 steps=[
                     ("imputer", SimpleImputer(strategy="most_frequent")),
-                    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+                    ("onehot", OneHotEncoder(handle_unknown="ignore", sparse_output=False))
                 ]
             )
 
@@ -108,7 +108,7 @@ class DataTransformation:
             )
 
             with open(self.transformation_config.preprocessor_obj_file_path, "wb") as f:
-                pickle.dump(preprocessor, f)
+                dill.dump(preprocessor, f)
 
             logging.info("Preprocessor saved successfully")
 

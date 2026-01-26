@@ -25,10 +25,12 @@ def save_object(file_path, obj):
 
 def evaluate_models(X_train, y_train, X_test, y_test, models, params):
     """
-    Evaluate the models using GridSearchCV and return a dictionary with model names and their best test accuracy scores.
+    Evaluate the models using GridSearchCV and return model_report dict, best_model, and best_model_name.
     """
     try:
         model_report = {}
+        trained_models = {}
+        
         for name, model in models.items():
             param_grid = params.get(name, {})
             if param_grid:
@@ -38,10 +40,17 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
             else:
                 best_model = model
                 best_model.fit(X_train, y_train)
+            
             y_test_pred = best_model.predict(X_test)
             test_model_score = accuracy_score(y_test, y_test_pred)
             model_report[name] = test_model_score
-        return model_report
+            trained_models[name] = best_model
+        
+        # Get best model
+        best_model_name = max(model_report, key=model_report.get)
+        best_model = trained_models[best_model_name]
+        
+        return model_report, best_model, best_model_name
     except Exception as e:
         raise CustomException(e, sys)
 
